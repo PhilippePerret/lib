@@ -1,0 +1,58 @@
+/*
+ *  Pour l'objet Couleur
+*/
+
+div#couleur_box {
+  position:fixed;
+  top:10em;
+  left:20em;
+  width:14em;
+  padding:1em;
+  background-color:#A0A0A0;
+  z-index:2000;
+}
+
+/*Affichage des couleurs (fond et texte)*/
+div#couleur_box div#coulbox_disp_couleur {
+  padding:3em;
+  background-color:white;
+  margin-bottom:1em;
+}
+
+div#couleur_box div#coulbox_div_cursors {
+  text-align:center;
+  margin-top:1em;
+}
+/*Div contenant un curseur*/
+div#couleur_box div.coulbox_divcursor {
+  display:inline-block;
+  position:relative;
+  margin:0 0.7em;
+  width:1.8em;
+  height:142px;
+  border:1px solid white;
+  background-color:slategrey;
+}
+div#couleur_box div.coulbox_divcursor.selected {
+  border-color:blue !important;
+}
+/*Le curseur*/
+div#couleur_box div.coulbox_divcursor div.coulbox_cursor {
+  position:absolute;
+  bottom:5px;
+  height:14.3px;
+  width:100%;
+  background-color:black;
+  z-index:2000;
+}
+/*Pour afficher la valeur actuelle du cursor*/
+div#couleur_box div.coulbox_divcursor div.coulbox_value {
+  position:absolute;
+  top:0;
+  font-family:courier;
+  font-size:9.5pt;
+  text-align:center;
+  color:white;
+  width:100%;
+  z-index:2001;
+}
