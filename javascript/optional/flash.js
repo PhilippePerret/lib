@@ -95,8 +95,8 @@ window.Flash={
   },
   definir_messages: function( p ){
     var _i, key ;
-    if( is_string( p ) ) p = [{message:p.replace(/\\("|')/g,'$1'), type:'notice' }] ;
-    if ( is_object( p ) ) p = [ p ] ;
+    if( 'string' == typeof p ) p = [{message:p.replace(/\\("|')/g,'$1'), type:'notice' }] ;
+    if ( exact_typeof(p) == 'object' ) p = [ p ] ;
     this.textes     = "" ;
     this.texte_brut = "" ;
     for(_i=0, _len=p.length;_i<_len;++_i){
