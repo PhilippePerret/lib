@@ -11,6 +11,12 @@ String.prototype.is_hash  =function(){return false}
 String.prototype.is_array =function(){return false}
 String.prototype.is_number=function(){return false}
 
+String.prototype.ucfirst = function (str) {
+  str = '' + this;
+  var f = str.charAt(0).toUpperCase();
+  return f + str.substr(1);
+}
+
 String.prototype.urlParams2hash=function(){
   var s, h, _i, _len, dbl;
   s=this.getUrlParams();
@@ -47,3 +53,8 @@ String.prototype.titleize   =function(){
   }
   return a.join(' ');
 }
+String.prototype.addSlashes = function()
+{return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
+ 
+String.prototype.stripSlashes = function()
+{return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
