@@ -16,3 +16,25 @@ function is_object( foo ){
   if (typeof foo != 'object') return false ;
   return false == defined( foo.length ) || foo.class == 'object' ;
 }
+
+// Retourne le « type exact » de la valeur +valeur+
+// array, integer, float (marge d'erreur si aucune décimale), 'nan', 'infinity', 'null', etc. 
+function exact_typeof(valeur){
+	switch(typeof valeur){
+		case 'function'	:
+			// if(this.toString().indexOf('.') > -1) return 'method'
+			return 'function'
+		case 'object'		:
+			if(valeur === null)                   return 'null'
+      if(valeur instanceof RegExp)          return 'regexp'
+			if('function' == typeof valeur.slice) return 'array'
+			else return 'object'
+		case 'number'		:
+			var tos = valeur.toString()
+			if(tos == "NaN") 				return "nan"
+			if(tos == "Infinity") 	return "infinity"
+			if(tos.indexOf('.')>-1) return 'float'
+			else 										return 'integer'
+		default: return typeof valeur // 'string', 'boolean'
+	}
+}
