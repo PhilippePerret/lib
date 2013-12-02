@@ -29,7 +29,8 @@
         type            data
         'input_text'    libelle:<le libellé>, default:<valeur def>
         'textarea'      libelle:<le libellé>, default:<valeur def>, width:<largeur>, height:<hauteur>
-        'link'          libelle:<le libellé>
+        'link'          libelle:<le libellé>,
+        'eheckbox'      libelle:<le libellé>, default:<valeur>, checked:<true si coché>
     
         Pour ces data on peut ajouter :
           class     La classe CSS à utiliser
@@ -39,11 +40,13 @@
           onfocus   Idem sur focus
           
       // Définition des boutons
+      // ----------------------
+      // Note: Ils sont à définir de gauche à droite
       data.buttons:{
-        ok      : <méthode à appeler quand on clique sur "OK">
-              OU: {name:<nom autre que "OK">, onclick: méthode à appeler}
         cancel  : <méthode à appeler quand on clique sur "Cancel">
               OU: {name:<nom autre que "Cancel">[, onclick: méthode à appeler]}
+        ok      : <méthode à appeler quand on clique sur "OK">
+              OU: {name:<nom autre que "OK">, onclick: méthode à appeler}
         bouton1 : {name:<nom du bouton 1>, onclick: <méthode>}
         bouton2 : Idem
       }
@@ -103,11 +106,20 @@ EditBox.prototype.observe = function(){
 }
 // Récupère les valeurs entrées
 EditBox.prototype.get_values = function(){
-  var fds = this.data.fields ; // les champs d'édition demandés
-  var values = {};
+  var fds = this.data.fields, values = {}, field, value, obj ;
   for(var f_id in fds){
     if(false == fds.hasOwnProperty(f_id)) continue;
-    values[f_id] = $('#'+fds[f_id].dom_id).val();
+    field = fds[f_id]
+    obj   = $('#'+field.dom_id)
+    switch(field.type)
+    {
+    case 'checkbox':
+      value = obj[0].checked == true
+      break
+    default:
+      value = obj.val();
+    }
+    values[f_id] = value
     // console.log("Valeur du champ "+fds[f_id].dom_id+" : " + values[f_id]);
   }
   return values;
@@ -343,7 +355,12 @@ Edit.Dom = {
       
     },
     checkbox:function(d){
-      
+      var f = ""
+      f += '<input id="'+d.dom_id+'" name="'+d.dom_id+'" type="checkbox" value="'+d.default
+      if(d.checked) f += ' checked="CHECKED"'
+      f += '" />';
+      if(d.libelle) f += '<label for="'+d.dom_id+'" class="libelle">'+d.libelle+'</label>';
+      return f
     },
     textarea:function(d){
       var f = "";
