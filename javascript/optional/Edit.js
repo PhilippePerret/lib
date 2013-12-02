@@ -313,7 +313,7 @@ Edit.Dom = {
       if(false == data.hasOwnProperty(f_id)) continue;
       f_data        = data[f_id];
       f_data.dom_id = box.id+"-field-"+f_id;
-      fds += this.BuildField[f_data.type](data[f_id]);
+      fds += '<div id="div_'+box.id+'">' + this.BuildField[f_data.type](data[f_id]) + '</div>';
     }
     fds += '</div>';
     return fds;
