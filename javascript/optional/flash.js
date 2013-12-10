@@ -53,6 +53,7 @@ window.Flash={
                       // note : le “timer universel tournera quand même”
       keep: false,    // mettre à true pour laisser le message précédent
     } ;
+    if(undefined != options.no_timer) options.timer = !options.no_timer
     this.options = options ;
     this.with_error == false              ;
     this.definir_messages( p )            ;
