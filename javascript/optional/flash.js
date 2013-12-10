@@ -63,13 +63,14 @@ window.Flash={
     $.proxy(this.kill_current_timer, this)() ;
     if( options.timer !== false ) $.proxy(this.set_timer,this)();
     // Dans tous les cas, il faut (re)lancer le timer universel
+    // qui effacera le message au bout de 2 minutes
     this.run_utimer() ;
     return true ;
   },
   utimer: null,
   run_utimer: function(){
     if (this.utimer != null ) clearTimeout( this.utimer ) ;
-    this.utimer = setTimeout( "$.proxy(Flash.clean,Flash)()", this.DUREE_UTIMER * 1000 ) ;
+    this.utimer = setTimeout( "$.proxy(Flash.clean, Flash)()", this.DUREE_UTIMER * 1000 ) ;
   },
   warning: function( message_erreur, options ){
     this.show( { message: message_erreur, type: 'warning' }, options) ;
@@ -116,6 +117,7 @@ window.Flash={
   // Placer un timeout pour fermer le message flash (sauf si c'est
   // une erreur)
   set_timer: function(){
+    // return // test
     this.on = true;
     if( this.options.timer === false ) return ;
     if ( ($('#inner_flash').length && this.check_if_not_a_warning()) ){
