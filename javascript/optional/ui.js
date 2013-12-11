@@ -76,7 +76,8 @@
                             ... autres données ...
                           }
 */
-window.UI = {
+if('undefined' == typeof UI) UI = {}
+$.extend(UI,{
   
   
   // Permet de rendre l'élément DOM +id+ déplaçable (quand on garde la
@@ -660,4 +661,4 @@ function Button( params ) {
   };
   params = this.default_params( params ) ;
 
-}
+})
