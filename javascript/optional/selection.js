@@ -48,7 +48,6 @@ window.Selection = {
     // Le nouveau texte
     if(new_value.indexOf('$') > -1)
     {
-      console.log("$ trouvé")
       new_value = new_value.replace(/_\$_/, obj_selection.content)
     }
     var text_avant = obj_value.substring(0, old_from)
