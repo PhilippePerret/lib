@@ -47,6 +47,10 @@ _Array.prototype.each = function(fct){
  *  qui retourne TRUE si l'élément doit être conservé et
  *  FALSE dans le cas contraire.
  *
+ *  Pour un {Array}, on renvoie le {Array} des valeurs qui remplissent
+ *  à la condition, pour un {Hash} on renvoie la liste des KEYS
+ *  dont les valeurs remplissent la condition.
+ *
  */
 _Array.prototype.collect = function(fct){
   var collecteds = []
