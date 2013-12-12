@@ -1,5 +1,11 @@
 /*
     Fonction "L", pour la gestion plus facile des listes (Array et Hash)
+
+  REQUIRED
+  --------
+
+    utils.js
+
 */
 // On définit la liste par L(<liste>)
 // Et ensuite on peut utiliser les méthodes en envoyant la méthode
@@ -21,7 +27,7 @@ window._Array = function(liste){
   return this;
 }
 _Array.prototype.each = function(fct){
-  if('function' == typeof this.liste.push){
+  if('array' == exact_typeof(this.liste)){
     for(var i in this.liste){
       fct(this.liste[i]);
     }
@@ -34,13 +40,26 @@ _Array.prototype.each = function(fct){
 }
 
 
-// Collecte des données dans la liste.
+/*
+ *  Collecte les données dans un {Array} ou un {Hash}
+ *  
+ *  Le premier argument de collect doit être une fonction
+ *  qui retourne TRUE si l'élément doit être conservé et
+ *  FALSE dans le cas contraire.
+ *
+ */
 _Array.prototype.collect = function(fct){
   var collecteds = []
-  if('array' == _exact_type_of(this.liste)){
-    for (var i in this.liste) collecteds.push(fct( this.liste[i] ))
+  if('array' == exact_typeof(this.liste)){
+    for (var i in this.liste)
+    {
+      if(fct( this.liste[i] )) collecteds.push( this.liste[i] )
+    }
   } else {
-    for(var k in this.liste) collecteds.push(fct( k, this.liste[k] ))
+    for(var k in this.liste)
+    {
+      if(fct(k, this.liste[k])) collecteds.push(k)
+    } 
   }
   return collecteds;
 }
