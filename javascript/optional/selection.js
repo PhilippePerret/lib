@@ -22,6 +22,19 @@ window.Selection = {
   },
   
   /*
+   *  Sélectionne dans +obj+ d'après les données fournies
+   *  par +dselection+
+   *  
+   *  @param  obj     {DOMElement} ou {jQuerySet}
+   *  @param  dsel    {Hash} définissant `start' et `end' 
+   */
+  select:function(obj, dsel)
+  {
+  	$(obj)[0].setSelectionRange(dsel.start, dsel.end) ;
+    $(obj)[0].focus()
+  },
+  
+  /*
    *  Mettre la sélection courant à la valeur +value+
    *
    *  @param  obj     {DOM Element|set jQuery} Objet visé
