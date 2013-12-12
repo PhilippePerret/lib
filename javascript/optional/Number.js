@@ -1,11 +1,13 @@
-
 Number.prototype.to_s       = function(){ return toString(this)     }
 Number.prototype.to_i       = function(){ return parseInt(this, 10) }
 Number.prototype.is_string  = function(){return false}
 Number.prototype.is_hash    = function(){return false}
 Number.prototype.is_array   = function(){return false}
 Number.prototype.is_number  = function(){return true}
-
+Number.prototype.is_between = function(x, y)
+{
+  return this >= x && this <= y
+}
 // Renvoie le nombre avec le nombre de décimales spécifiées
 // 
 // @note:   Ne vérifie pas que le paramètre soit bon (TODO:)
