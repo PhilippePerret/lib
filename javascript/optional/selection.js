@@ -30,8 +30,8 @@ window.Selection = {
    */
   select:function(obj, dsel)
   {
-  	$(obj)[0].setSelectionRange(dsel.start, dsel.end) ;
     $(obj)[0].focus()
+  	$(obj)[0].setSelectionRange(dsel.start, dsel.end) ;
   },
   
   /*
