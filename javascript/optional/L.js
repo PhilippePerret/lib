@@ -57,15 +57,50 @@ _Array.prototype.collect = function(fct){
   if('array' == exact_typeof(this.liste)){
     for (var i in this.liste)
     {
-      if(fct( this.liste[i] )) collecteds.push( this.liste[i] )
+      collecteds.push( fct(this.liste[i]) )
     }
   } else {
     for(var k in this.liste)
     {
-      if(fct(k, this.liste[k])) collecteds.push(k)
+      collecteds.push( fct(k, this.liste[k]) )
     } 
   }
   return collecteds;
+}
+/*
+ *  Retourne les éléments de la liste répondant à la
+ *  fonction envoyée.
+ *  Pour un {Hash}, si `only_keys' est true (par défaut),
+ *  la méthode ne renvoie que les clés retenues. Si FALSE,
+ *  retourne un objet contenant les éléments retenus (donc
+ *  l'objet this sans les clés/valeurs ne correspond pas)
+ */
+_Array.prototype.select = function(fct, only_keys){
+  if(undefined == only_keys) only_keys = true
+  if('object' == exact_typeof(this.liste)){
+    var collecteds = only_keys ? [] : {}
+    for(var k in this.liste)
+    {
+      if(fct(k, this.liste[k]))
+      {
+        if(only_keys) collecteds.push( k )
+        else collecteds[k] = this.liste[k]
+      }
+      else
+      {
+        
+      }
+    } 
+  }
+  else
+  {
+    var collecteds = []
+    for (var i in this.liste)
+    {
+      if(fct(this.liste[i])) collecteds.push(this.liste[i])
+    }
+  }
+  return collecteds
 }
 // Même que précédent, mais retourne un string des éléments join
 // avec le séparateur +sep+ ("" par défaut)
