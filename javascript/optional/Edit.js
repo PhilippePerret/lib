@@ -298,7 +298,7 @@ Edit.Dom = {
   },
   build_title:function(box){
     if(!box.data.title) return "";
-    return '<div id="'+box.id+'-title" class="title">'+box.data.title+'</div>';
+    return '<div id="'+box.id+'-title" class="title">'+box.data.title.replace(/\n/g, '<br>')+'</div>';
   },
   // Construit les champs d'édition
   // @param   box   Instance BoxEdit de la boite
