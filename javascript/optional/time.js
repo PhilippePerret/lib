@@ -16,6 +16,27 @@ window.Time = {
     if(undefined == format) return (new Date()).valueOf();
     else return new Date().toLocaleString();
   },
+  /*
+   *  Retourne le nombre de minutes pour l'horloge donnée
+   *  
+   */
+  horlogeToMinutes:function(val)
+  {
+    return parseInt(this.h2s(val) / 60, 10)
+  },
+  h2m:function(val){return this.horlogeToMinutes(val)},
+  /*
+   *  Retourne l'horloge en fonction du nombre de minutes
+   *  fourni.
+   *  
+   */
+  minutesToHorloge:function(mns, options)
+  {
+    if(undefined == options) options = {}
+    if(undefined == options.no_frames) options.no_frames = true
+    return this.secondsToHorloge( parseInt(mns,10) * 60, options )
+  },
+  m2h:function(mns, options){return this.minutesToHorloge(mns, options)},
   // Retourne le nombre de secondes (float) en fonction de l'horloge
   // fournie.
   // @note: Si l'horloge contient un point, c'est un time code
@@ -56,8 +77,9 @@ window.Time = {
     if(mns < 10) mns = "0"+mns;
     var scs = (reste % 60) * 1000;
     scs = Math.floor(scs/1000);
-    if(scs<10) scs = "0"+scs;
-    var h = hrs+":"+mns+":"+scs; 
+    if(scs<10) scs = "0"+scs
+    var h = hrs+":"+mns+":"+scs
+    if(options.no_frames) return h
     if(this.FORMAT_HORLOGE_DEFAULT & WITH_MILLIEME) h += ","+fms;
     return h;
   },
