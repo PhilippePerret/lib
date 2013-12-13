@@ -3,10 +3,10 @@
     ----------
     Pour gérer l'édition
     
-    Requis
-    ------
-      - La librairie js   time.js
-      - La librairie css  edit.css
+    DÉPENDANCES
+    -----------
+      - Librairie js   time.js
+      - Librairie css  edit.css
     
     Définition d'une boite d'édition
     --------------------------------
