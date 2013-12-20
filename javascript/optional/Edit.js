@@ -329,7 +329,10 @@ Edit.Dom = {
       if('object' != typeof box.data.buttons[btn] || box.data.buttons[btn]==null){
         box.data.buttons[btn] = {name:btn.capitalize(), onclick:box.data.buttons[btn]};
       }
-      buts += '<input id="'+box.id+'-'+btn+'" type="button" value="'+box.data.buttons[btn].name+'" />';
+      buts += '<input id="'+box.id+'-'+btn+'" '+
+              (btn == 'cancel' ? ' class="fleft"' : '') +
+              'type="button" '+
+              'value="'+box.data.buttons[btn].name+'" />';
     }
     buts += '</div>';
     return buts;
