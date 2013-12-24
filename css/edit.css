@@ -1,6 +1,6 @@
 div.edit_box {
-/*  position    : fixed !important;*/
-  position    : absolute !important;
+  position    : fixed !important;
+/*  position    : absolute !important;*/
   top         : 9em;
   left        : 20em;
   background-color: #DDD;
