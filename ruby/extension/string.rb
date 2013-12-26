@@ -7,7 +7,7 @@ class String
     t = self.split("\n").collect do |para|
           "<div style=\"margin-bottom:4px;\">#{para}</div>"
         end.join("")
-    '<div style="font-family:Verdana;font-size:1em;">'+t+'</div>'
+    '<div style="font-family:inherit;font-size:inherit;">'+t+'</div>'
   end
   
   # Transformer les caractères diacritiques et autres en ASCII
