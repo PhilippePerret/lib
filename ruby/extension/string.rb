@@ -19,4 +19,10 @@ class String
   def normalize
     self.tr(DATA_NORMALIZE[:from], DATA_NORMALIZE[:to])
   end
+  
+  # Retire les slashes
+  # 
+  def strip_slashes
+    self.gsub(/\\(['"])/, '\\1')
+  end
 end
