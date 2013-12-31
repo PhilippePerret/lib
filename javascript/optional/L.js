@@ -116,3 +116,11 @@ _Array.prototype.remove = function(foo){
   }
   return newliste;
 }
+
+_Array.prototype.somme = function(){
+  var sum = 0
+  for(var i in this.liste){
+    sum += parseInt(this.liste[i],10)
+  }
+  return sum
+}
