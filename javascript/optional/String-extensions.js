@@ -1,4 +1,15 @@
-
+$.extend(String.prototype,{
+  /**
+    * Retourne TRUE si le string contient +search+
+    * @method contains
+    * @param  {String} search Le texte recherché
+    * @return {Boolean} True en cas de succès
+    */
+  contains:function(search)
+  {
+    return this.indexOf(search) > -1
+  }
+})
 String.prototype.to_i     =function(){return parseInt(this, 10) }
 String.prototype.strip    =function(){return this.replace(/^(\s+|\s+)/g,'');}
 String.prototype.upcase   =function(){return this.toUpperCase();}
