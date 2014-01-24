@@ -1,0 +1,30 @@
+/**
+  * Styles pour les horloges (cf. horloge.js)
+  */
+
+div.horloge {
+  display     :inline-block;
+  width       :72px;
+  background-color: black;
+  color       :white;
+  font-family :Georgia;
+  font-size   :100%;
+  padding     :0px 4px 2px;
+  text-align  :center;
+}
+
+/* Les span qui contiennent les heures, minutes, secondes */
+div.horloge span.hlg-unit {
+  display : inline-block;
+  width   : 25%;
+/*  border  :1px dashed green;*/
+}
+div.horloge span.hlg-unit-hrs {
+  text-align : right;
+}
+div.horloge span.hlg-unit-mns {
+  text-align : center;
+}
+div.horloge span.hlg-unit-scs {
+  text-align : center;
+}
