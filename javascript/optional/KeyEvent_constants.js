@@ -44,3 +44,25 @@ const Key_w     = 119
 const Key_x     = 120
 const Key_y     = 121
 const Key_z     = 122
+
+const Key_0PN   = 48
+const Key_1PN   = 49
+const Key_2PN   = 50
+const Key_3PN   = 51
+const Key_4PN   = 52
+const Key_5PN   = 53
+const Key_6PN   = 54
+const Key_7PN   = 55
+const Key_8PN   = 56
+const Key_9PN   = 57
+
+const Key_0     = 224
+const Key_1     = 38
+const Key_2     = 233
+const Key_3     = 34
+const Key_4     = 39
+const Key_5     = 40
+const Key_6     = 167
+const Key_7     = 232
+const Key_8     = 33
+const Key_9     = 231

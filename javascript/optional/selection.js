@@ -20,6 +20,35 @@ window.Selection = {
   	var end   = obj.selectionEnd
   	return {content	:	t.substring(start, end), start:	start, end:	end };
   },
+  /**
+    * Retourne le texte autour de la sélection
+    * @method around
+    * @usage  :  Selection.around(<obj>, <params>)
+    * @param {jQuerySet|DOMElement} obj   L'objet DOM
+    * @param {Object} params  Paramètres définissant ce qu'il faut remonter
+    *   @param  {Boolean} before    Si True (par défaut), le texte avant la sélection
+    *   @param  {Number}  length    La longueur de texte qu'il faut prendre.
+    * @return {Object} contenant {content:le texte, start:début, end: fin}
+    */
+  around:function(obj, params)
+  {
+    if(undefined != obj.jquery) obj = obj[0]
+  	var t     = obj.value
+  	var start = obj.selectionStart
+  	var end   = obj.selectionEnd
+    if(undefined == params.before) params.before = true
+    if(params.before)
+    {
+      end    = parseInt(start,10)
+      start -= params.length
+    }
+    else
+    {
+      start  = parseInt(end,10)
+      end   += params.length
+    }
+  	return {content	:	t.substring(start, end), start:	start, end:	end };
+  },
   
   /*
    *  Sélectionne dans +obj+ d'après les données fournies
@@ -34,17 +63,22 @@ window.Selection = {
   	$(obj)[0].setSelectionRange(dsel.start, dsel.end) ;
   },
   
-  /*
-   *  Mettre la sélection courant à la valeur +value+
-   *
-   *  @param  obj     {DOM Element|set jQuery} Objet visé
-   *  @param  value   {String} Pour le moment, seulement un code HTML
-   *                  Si contient `_$_', le dollar sera remplacé par 
-   *                  le texte actuel.
-   *  @param  options {Hash} Options pour l'insertion
-   *                    end   :   Si TRUE, on place le curseur à la fin
-   *
-   */
+  /**
+    * Met la sélection courante de l'objet +obj+ à la valeur +value+
+    * et place le curseur et la nouvelle sélection en fonction des
+    * valeur de +options+.
+    *
+    * @method set
+    * @param  obj     {DOM Element|set jQuery} Objet visé
+    * @param  value   {String} Pour le moment, seulement un code HTML
+    *                 Si contient `_$_', le dollar sera remplacé par 
+    *                 le texte actuel.
+    * @param {Hash} Options pour l'insertion
+    *   @param {Boolean|Number} options.end   Si TRUE, on place le curseur à la fin
+    *                             Si un nombre `x` on place le curseur à x de la fin (-1 par exemple pour placer juste avant)
+    *   @param {Number} options.length  Longueur de la sélection finale.
+    *
+    */
   set:function(obj, new_value, options)
   {
     
@@ -70,8 +104,12 @@ window.Selection = {
     // Sélection du nouveau contenu
     var cursor ;
     var end_selection = old_from + new_value.length
-    if(options.end) cursor = {in:end_selection, out:end_selection}
-    else            cursor = {in:old_from,      out:end_selection}
+    if(undefined != options.end)
+    {
+      if('number' == typeof options.end) end_selection += options.end
+      cursor = {in:end_selection, out:end_selection + (options.length || 0)}
+    } 
+    else cursor = {in:old_from,      out:end_selection}
   	obj.setSelectionRange(cursor.in, cursor.out) ;
 	  obj.focus();
   	obj.scrollTop = current_scroll ;
