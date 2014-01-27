@@ -75,6 +75,7 @@ $.extend(Chrono.prototype,{
     */
   do_reset:function()
   {
+    this.kill_timer()
     this.start_time       = 0
     this.elapsed_time     = 0
     this.last_start_time  = 0
@@ -90,6 +91,7 @@ $.extend(Chrono.prototype,{
     var justnow = (new Date()).getTime()
     if(this.start_time === null) this.start_time = justnow
     this.last_start_time = justnow
+    this.kill_timer()
     this.timer = setInterval($.proxy(this.change, this), 500);
   },
   /**
@@ -168,6 +170,14 @@ $.extend(Chrono.prototype,{
     * @method unrun
     */
   unrun:function(){
+    this.kill_timer()
+  },
+  
+  /** Détruit le timer interval s'il existe
+    * @method kill_timer
+    */
+  kill_timer:function()
+  {
     if(this.timer)
     {
       clearInterval(this.timer)
